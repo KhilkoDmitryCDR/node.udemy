@@ -7,14 +7,15 @@ const dotenv=require('dotenv')
 dotenv.config()
 
 // db
-mongoose.connect(process.env.MONGO_URI)
-.then(()=>console.log('DB connected'))
+mongoose.connect(
+  process.env.MONGO_URI,
+  {useNewUrlParser: true}
+)
+.then(() => console.log('DB Connected'))
 
-
-mongoose.connection.on('error',err=>{
-    console.log(`DB connection error: ${error.message}`);
-})
-
+mongoose.connection.on('error', err => {
+  console.log(`DB connection error: ${err.message}`)
+});
 
 
 // Bring routes
